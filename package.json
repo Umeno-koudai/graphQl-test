@@ -1,0 +1,36 @@
+{
+	"name": "backend",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"db:migrate": "tsx src/database/migrate.ts",
+		"db:rollback": "tsx src/database/rollback.ts",
+		"db:seed": "tsx src/database/seeder/seed.ts",
+		"db:generate": "kysely-codegen",
+		"db:init": "npm run db:migrate && npm run db:seed && npm run db:generate",
+		"start": "tsx --watch src/index.ts",
+		"format": "biome format --write",
+    "check": "biome check --write && tsc -no"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"dependencies": {
+		"@apollo/server": "^4.12.2",
+		"@graphql-tools/graphql-file-loader": "^8.0.20",
+		"@graphql-tools/load": "^8.1.0",
+		"dotenv": "^16.5.0",
+		"graphql": "^16.11.0",
+		"kysely": "^0.28.2",
+		"mysql2": "^3.14.1"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@graphql-codegen/cli": "^5.0.7",
+		"@types/node": "^24.0.0",
+		"kysely-codegen": "^0.18.5",
+		"tsx": "^4.19.4",
+		"typescript": "^5.8.3"
+	}
+}

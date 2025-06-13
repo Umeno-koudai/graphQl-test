@@ -1,0 +1,121 @@
+scalar Date
+scalar DateTime
+
+interface BookFields {
+	"""
+	書籍ID
+	"""
+	id: ID!
+
+	"""
+	書籍タイトル
+	"""
+	title: String!
+
+	"""
+	書籍著者
+	"""
+	author: String!
+
+	"""
+	書籍ISBN
+	"""
+	isbn: String
+
+	"""
+	書籍の作成日時
+	"""
+	createdAt: DateTime!
+
+	"""
+	書籍の更新日時
+	"""
+	updatedAt: DateTime
+}
+
+"""
+書籍
+"""
+type Book implements BookFields {
+	"""
+	書籍ID
+	"""
+	id: ID!
+
+	"""
+	書籍タイトル
+	"""
+	title: String!
+
+	"""
+	書籍著者
+	"""
+	author: String!
+
+	"""
+	書籍ISBN
+	"""
+	isbn: String
+
+	"""
+	書籍の作成日時
+	"""
+	createdAt: DateTime!
+
+	"""
+	書籍の更新日時
+	"""
+	updatedAt: DateTime
+}
+
+"""
+書籍追加ミューテーションのペイロード
+"""
+type Query {
+	books: [Book!]!
+  book(id: ID!): Book
+  bookByAuthor(authorId: String!): Book
+
+}
+
+"""
+書籍追加用の入力
+"""
+input AddBookInput {
+	"""
+	書籍タイトル
+	"""
+	title: String!
+
+	"""
+	書籍著者ID
+	"""
+	authorId: ID!
+
+	"""
+	書籍ISBN
+	"""
+	isbn: String
+}
+
+input updateBookInput{
+  id: ID!
+  title:String!
+  authorId: ID!
+  isbn: String
+}
+
+type Payload {
+	"""
+	書籍追加ミューテーションのペイロード
+	"""
+	status: Boolean!
+}
+
+type Mutation {
+	"""
+	新しい書籍を追加
+	"""
+	addBook(input: AddBookInput!): Payload!
+  updateBook(input: updateBook!, id: ID!): Payload!
+}
