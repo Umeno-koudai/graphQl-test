@@ -98,7 +98,7 @@ input AddBookInput {
 	isbn: String
 }
 
-input updateBookInput{
+input UpdateBookInput{
   id: ID!
   title:String!
   authorId: ID!
@@ -117,5 +117,6 @@ type Mutation {
 	新しい書籍を追加
 	"""
 	addBook(input: AddBookInput!): Payload!
-  updateBook(input: updateBook!, id: ID!): Payload!
+  updateBook(input: UpdateBookInput!): Payload!
+  deleteBook(id: ID!): Payload!
 }

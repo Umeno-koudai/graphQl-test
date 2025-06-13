@@ -56,7 +56,7 @@ export const createBook = async (input: AddBookInput): Promise<boolean> => {
     }
 };
 
-export const updateBook = async (input: UpdateBookInput, selectId:string): Promise<boolean> => {
+export const updateBook = async (input: UpdateBookInput): Promise<boolean> => {
     try{
         const result = await db
         .updateTable("books")
@@ -71,6 +71,20 @@ export const updateBook = async (input: UpdateBookInput, selectId:string): Promi
     }
     catch(erro){
         console.error(erro);
+        return false;
+    }
+}
+
+export const deleteBook = async (id: number): Promise<boolean> =>{
+    try{
+        const result = await db
+        .deleteFrom("books")
+        .where("books.id", "=", id)
+        .executeTakeFirst();
+        return true;
+    }
+    catch(err){
+        console.error(err);
         return false;
     }
 }
